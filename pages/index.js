@@ -1,6 +1,7 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
+import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import { useRouter } from 'next/router';
+
 import appConfig from '../config.json';
 
 function Titulo(props) {
@@ -19,21 +20,7 @@ function Titulo(props) {
   );
 }
 
-// Componente React
-// function HomePage() {
-//     // JSX
-//     return (
-//         <div>
-//             <GlobalStyle />
-//             <Titulo tag="h2">Boas vindas de volta!</Titulo>
-//             <h2>Discord - Alura Matrix</h2>
-//         </div>
-//     )
-// }
-// export default HomePage
-
 export default function HomePage() {
-  // const username = 'edvanjefferson';
   const [username, setUsername] = React.useState('edvanjefferson');
   const roteamento = useRouter();
 
@@ -68,7 +55,7 @@ export default function HomePage() {
             onSubmit={function (infosDoEvento) {
               infosDoEvento.preventDefault();
               console.log('Alguém submeteu o form');
-              roteamento.push('/chat');
+              roteamento.push(`/chat?username=${username}`);
               // window.location.href = '/chat';
             }}
             styleSheet={{
@@ -81,26 +68,10 @@ export default function HomePage() {
               {appConfig.name}
             </Text>
 
-            {/* <input
-                            type="text"
-                            value={username}
-                            onChange={function (event) {
-                                console.log('usuario digitou', event.target.value);
-                                // Onde ta o valor?
-                                const valor = event.target.value;
-                                // Trocar o valor da variavel
-                                // através do React e avise quem precisa
-                                setUsername(valor);
-                            }}
-                        /> */}
             <TextField
               value={username}
               onChange={function (event) {
-                console.log('usuario digitou', event.target.value);
-                // Onde ta o valor?
                 const valor = event.target.value;
-                // Trocar o valor da variavel
-                // através do React e avise quem precisa
                 setUsername(valor);
               }}
               fullWidth
@@ -126,7 +97,6 @@ export default function HomePage() {
             />
           </Box>
           {/* Formulário */}
-
 
           {/* Photo Area */}
           <Box
